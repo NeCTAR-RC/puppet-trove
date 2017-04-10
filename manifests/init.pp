@@ -248,9 +248,17 @@
 #   (optional) Use Neutron
 #   Defaults to true
 #
+# [*default_neutron_networks*]
+#   (optional) The network that trove will attach by default.
+#   Defaults to undef.
+#
 # [*package_ensure*]
 #   (optional) The state of the package.
 #   Defaults to 'present'
+#
+# [*taskmanager_queue*]
+#   (optional) Message queue name the Taskmanager will listen to.
+#   Defaults to 'taskmanager'.
 #
 # === DEPRECATED PARAMETERS
 #
@@ -338,7 +346,9 @@ class trove(
   $heat_service_type            = 'orchestration',
   $neutron_service_type         = 'network',
   $use_neutron                  = true,
+  $default_neutron_networks     = undef,
   $package_ensure               = 'present',
+  $taskmanager_queue            = 'taskmanager',
   # DEPRECATED PARAMETERS
   $rabbit_host                  = $::os_service_default,
   $rabbit_hosts                 = $::os_service_default,

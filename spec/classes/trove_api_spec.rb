@@ -78,6 +78,7 @@ describe 'trove::api' do
         is_expected.to contain_trove_config('DEFAULT/http_put_rate').with_value('200')
         is_expected.to contain_trove_config('DEFAULT/http_delete_rate').with_value('200')
         is_expected.to contain_trove_config('DEFAULT/http_mgmt_post_rate').with_value('200')
+        is_expected.to contain_trove_config('DEFAULT/taskmanager_queue').with_value('taskmanager')
         is_expected.to contain_trove_config('DEFAULT/transport_url').with_value('<SERVICE DEFAULT>')
         is_expected.to contain_trove_config('DEFAULT/remote_nova_client').with_ensure('absent')
         is_expected.to contain_trove_config('DEFAULT/remote_cinder_client').with_ensure('absent')
@@ -194,6 +195,36 @@ describe 'trove::api' do
         it 'configures trove-api with RabbitMQ' do
           is_expected.to contain_trove_config('oslo_messaging_rabbit/rabbit_hosts').with_value(['10.0.0.1,10.0.0.2'])
           is_expected.to contain_trove_config('oslo_messaging_rabbit/rabbit_ha_queues').with_value('true')
+        end
+      end
+
+      context 'when using Neutron' do
+        let :pre_condition do
+          "class { 'trove':
+             nova_proxy_admin_pass    => 'verysecrete',
+             use_neutron              => true}
+           class { '::trove::keystone::authtoken':
+             password => 'a_big_secret',
+           }"
+        end
+
+        it 'configures trove to use any network label' do
+          is_expected.to contain_trove_config('DEFAULT/network_label_regex').with_value('.*')
+        end
+      end
+
+      context 'when using Nova Network' do
+        let :pre_condition do
+          "class { 'trove':
+             nova_proxy_admin_pass => 'verysecrete',
+             use_neutron           => false}
+           class { '::trove::keystone::authtoken':
+             password => 'a_big_secret',
+           }"
+        end
+
+        it 'configures trove to use the "private" network label' do
+          is_expected.to contain_trove_config('DEFAULT/network_label_regex').with_value('^private$')
         end
       end
 

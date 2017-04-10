@@ -246,6 +246,24 @@ class trove::api(
     'DEFAULT/heat_service_type':         value => $::trove::heat_service_type;
   }
 
+  if $::trove::use_neutron {
+    trove_config {
+      'DEFAULT/network_label_regex':         value => '.*';
+      'DEFAULT/network_driver':              value => 'trove.network.neutron.NeutronDriver';
+      'DEFAULT/default_neutron_networks':    value => $default_neutron_networks;
+    }
+  } else {
+    trove_config {
+      'DEFAULT/network_label_regex':         value => '^private$';
+      'DEFAULT/network_driver':              value => 'trove.network.nova.NovaNetwork';
+      'DEFAULT/default_neutron_networks':    ensure => absent;
+    }
+  }
+
+  trove_config {
+    'DEFAULT/taskmanager_queue': value => $::trove::taskmanager_queue;
+  }
+
   oslo::messaging::notifications { 'trove_config':
     transport_url => $::trove::notification_transport_url,
     driver        => $::trove::notification_driver,
