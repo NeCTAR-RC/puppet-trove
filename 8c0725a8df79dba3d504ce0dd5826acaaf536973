@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6062a780_bad698d9",
+        "filename": "manifests/dns.pp",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000077
+      },
+      "writtenOn": "2019-06-12T06:48:34Z",
+      "side": 1,
+      "message": "ws",
+      "range": {
+        "startLine": 91,
+        "startChar": 3,
+        "endLine": 91,
+        "endChar": 7
+      },
+      "revId": "8c0725a8df79dba3d504ce0dd5826acaaf536973",
+      "serverId": "f182a8af-62ca-4ceb-ab81-14f8fec9c6c5",
+      "unresolved": true
+    }
+  ]
+}
