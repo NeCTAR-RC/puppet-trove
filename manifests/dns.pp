@@ -62,6 +62,7 @@ class trove::dns (
 
   trove_config {
     'DEFAULT/trove_dns_support':          value => true;
+    'DEFAULT/dns_auth_url':               value => $dns_auth_url;
     'DEFAULT/dns_account_id':             value => $dns_account_id;
     'DEFAULT/dns_username':               value => $dns_username;
     'DEFAULT/dns_passkey':                value => $dns_passkey;
@@ -77,6 +78,7 @@ class trove::dns (
 
   trove_taskmanager_config {
     'DEFAULT/trove_dns_support':          value => true;
+    'DEFAULT/dns_auth_url':               value => $dns_auth_url;
     'DEFAULT/dns_account_id':             value => $dns_account_id;
     'DEFAULT/dns_username':               value => $dns_username;
     'DEFAULT/dns_passkey':                value => $dns_passkey;
