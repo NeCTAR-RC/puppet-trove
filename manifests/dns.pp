@@ -46,6 +46,10 @@
 #   (optional) Keystone auth project domain ID
 #   Defaults to 'default'.
 #
+# [*dns_time_out*]
+#   (optional) instance ip creation timeout
+#   Defaults to 120.
+#
 class trove::dns (
   $dns_account_id,
   $dns_auth_url,
@@ -59,6 +63,7 @@ class trove::dns (
   $dns_driver                 = 'trove.dns.designate.driver.DesignateDriverV2',
   $dns_instance_entry_factory = 'trove.dns.designate.driver.DesignateInstanceEntryFactory',
   $dns_service_type           = 'dns',
+  $dns_time_out               = 120,
 ) {
   include trove::deps
   trove_config {
@@ -75,6 +80,7 @@ class trove::dns (
     'DEFAULT/dns_service_type':           value => $dns_service_type;
     'DEFAULT/dns_user_domain_id':         value => $dns_user_domain_id;
     'DEFAULT/dns_project_domain_id':      value => $dns_project_domain_id;
+    'DEFAULT/dns_time_out':               value => $dns_time_out;
   }
   trove_taskmanager_config {
     'DEFAULT/trove_dns_support':          value => true;
@@ -90,5 +96,6 @@ class trove::dns (
     'DEFAULT/dns_service_type':           value => $dns_service_type;
     'DEFAULT/dns_user_domain_id':         value => $dns_user_domain_id;
     'DEFAULT/dns_project_domain_id':      value => $dns_project_domain_id;
+    'DEFAULT/dns_time_out':               value => $dns_time_out;
   }
 }
