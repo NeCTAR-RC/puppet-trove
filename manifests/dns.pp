@@ -92,9 +92,9 @@ class trove::dns (
     'DEFAULT/dns_domain_id':              value => $dns_domain_id;
     'DEFAULT/dns_ttl':                    value => $dns_ttl;
     'DEFAULT/dns_driver':                 value => $dns_driver;
-    'DEFAULT/dns_instance_entry_factory': value => $dns_instance_entry_factoy;
+    'DEFAULT/dns_instance_entry_factory': value => $dns_instance_entry_factory;
     'DEFAULT/dns_service_type':           value => $dns_service_type;
-    'DEFAULT/dns_user_project_id':        value => $dns_user_project_id;
+    'DEFAULT/dns_user_domain_id':         value => $dns_user_domain_id;
     'DEFAULT/dns_project_domain_id':      value => $dns_project_domain_id;
     'DEFAULT/dns_time_out':               value => $dns_time_out;
   }
