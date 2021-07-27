@@ -342,7 +342,7 @@ class trove(
   $swift_url                    = false,
   $neutron_url                  = false,
   $nova_compute_service_type    = 'compute',
-  $cinder_service_type          = 'volumev2',
+  $cinder_service_type          = 'volumev3',
   $swift_service_type           = 'object-store',
   $neutron_service_type         = 'network',
   $glance_service_type         = 'image',
