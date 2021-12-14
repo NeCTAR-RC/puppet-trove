@@ -122,6 +122,14 @@ class trove::guestagent(
     rpc_response_timeout => $::trove::rpc_response_timeout,
   }
 
+  # region name
+  if $::trove::os_region_name {
+    trove_guestagent_config { 'DEFAULT/os_region_name': value => $::trove::os_region_name }
+  }
+  else {
+    trove_guestagent_config { 'DEFAULT/os_region_name': ensure => absent }
+  }
+
   oslo::messaging::notifications { 'trove_guestagent_config':
     transport_url => $::trove::notification_transport_url,
     driver        => $::trove::notification_driver,

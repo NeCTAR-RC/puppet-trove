@@ -245,6 +245,13 @@
 #   (optional) The network that trove will attach by default.
 #   Defaults to undef
 #
+# [*os_region_name*]
+#   (optional) Sets the os_region_name flag. For environments with
+#   more than one endpoint per service. If you don't set this and
+#   you have multiple endpoints, you will get Ambiguous Endpoint
+#   exceptions in the trove API service.
+#   Defaults to undef.
+#
 class trove(
   $default_transport_url        = $::os_service_default,
   $notification_transport_url   = $::os_service_default,
@@ -298,6 +305,7 @@ class trove(
   $package_ensure               = 'present',
   # DEPRECATED PARAMETERS
   $default_neutron_networks     = undef,
+  $os_region_name               = undef,
 ) {
 
   include trove::deps
