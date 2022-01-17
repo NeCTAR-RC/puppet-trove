@@ -76,6 +76,18 @@
 #   (optional) Default OpenSSL aes_cbc key
 #   Defaults to $::os_service_default.
 #
+# [*volume_fstype*]
+#   (optional) File system type used to format a volume.
+#   Defaults to $::os_service_default.
+#
+# [*format_options*]
+#   (optional) Options to use when formatting a volume.
+#   Defaults to $::os_service_default.
+#
+# [*volume_format_timeout*]
+#   (optional) Maximum time (in seconds) to wait for a volume format.
+#   Defaults to $::os_service_default.
+#
 #  DEPRECATED PARAMETERS
 #
 # [*control_exchange*]
@@ -103,6 +115,9 @@ class trove::guestagent(
   $root_grant_option       = $::os_service_default,
   $default_password_length = $::os_service_default,
   $backup_aes_cbc_key      = $::os_service_default,
+  $volume_fstype           = $::os_service_default,
+  $format_options          = $::os_service_default,
+  $volume_format_timeout   = $::os_service_default,
   #Deprecated
   $control_exchange        = undef,
   $auth_url                = undef,
@@ -125,6 +140,9 @@ trove::control_exchange instead.")
     'DEFAULT/root_grant_option':       value => $root_grant_option;
     'DEFAULT/default_password_length': value => $default_password_length;
     'DEFAULT/backup_aes_cbc_key':      value => $backup_aes_cbc_key;
+    'DEFAULT/volume_fstype':           value => $volume_fstype;
+    'DEFAULT/format_options':          value => $format_options;
+    'DEFAULT/volume_format_timeout':   value => $volume_format_timeout;
   }
 
   oslo::messaging::default { 'trove_guestagent_config':
