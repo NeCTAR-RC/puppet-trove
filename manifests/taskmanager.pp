@@ -97,6 +97,7 @@ class trove::taskmanager(
 
   include trove::deps
   include trove::params
+  include trove::taskmanager::service_credentials
 
   # Remove individual config files so that we do not leave any parameters
   # configured by older version
