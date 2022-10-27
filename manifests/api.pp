@@ -113,7 +113,7 @@ class trove::api(
   $package_ensure      = 'present',
   $auth_strategy       = 'keystone',
   $taskmanager_queue   = $::os_service_default,
-) {
+) inherits trove {
 
   include trove::deps
   include trove::db

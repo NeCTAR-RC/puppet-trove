@@ -66,6 +66,11 @@ class trove::taskmanager(
   include trove::deps
   include trove::params
 
+  $taskmanager_service_cred_auth_url = lookup('trove::taskmanager::service_credentials::auth_url',undef,undef,undef)
+  if $taskmanager_service_cred_auth_url {
+      include trove::taskmanager::service_credentials
+  }
+
   # basic service config
   trove_config {
     'DEFAULT/guest_config':        value => $guestagent_config_file;
