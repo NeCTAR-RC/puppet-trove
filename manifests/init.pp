@@ -241,6 +241,13 @@
 #
 # DEPRECATED PARAMETERS
 #
+# [*os_region_name*]
+#   (optional) Sets the os_region_name flag. For environments with
+#   more than one endpoint per service. If you don't set this and
+#   you have multiple endpoints, you will get Ambiguous Endpoint
+#   exceptions in the trove API service.
+#   Defaults to undef.
+#
 # [*use_neutron*]
 #   (optional) Use Neutron
 #   Defaults to undef
@@ -322,6 +329,7 @@ class trove(
   $default_neutron_networks     = $::os_service_default,
   $package_ensure               = 'present',
   # DEPRECATED PARAMETERS
+  $os_region_name               = undef,
   $use_neutron                  = undef,
   $database_connection          = undef,
   $database_idle_timeout        = undef,
